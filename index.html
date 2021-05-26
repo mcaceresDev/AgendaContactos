@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/general.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+
+    <header class="cabecera">
+        <h2>Agenda de Contactos</h2>
+    </header>
+    <main>
+        <nav class="navegacion">
+            <ul>
+                <li class="active"><a href="">Agregar contacto</a></li>
+                <li><a href="">Listado de contactos</a></li>
+            </ul>
+        </nav>
+
+        <div class="contenido-pestanas">
+            <div class="bloque activo bloque-form">
+                <form id="formulario" action="">
+                    <fieldset class="form-group">
+                        <span class="material-icons">
+                            account_box
+                        </span>
+                        <input  type="text" placeholder="Nombre del Contacto" name="nombres" id="nombre" class="caja">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <span class="material-icons">
+                            people_alt
+                            </span>
+                        <input  type="text" placeholder="Apellidos" name="apellidos" id="apellido" class="caja">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <span class="material-icons">
+                            local_phone
+                            </span>
+                        <input type="number" placeholder="Número" name="numero" id="numero" class="caja">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <span class="material-icons">
+                            email
+                            </span>
+                        <input type="email" placeholder="Correo" name="email" id="correo" class="caja">
+                    </fieldset>
+                    <button id="btnAgrega">Agregar</button>
+                </form>
+            </div>
+            <div class="bloque  bloque-list">
+                <h3>Listado de Contactos</h3>
+                <input type="text" class="caja" placeholder="Buscar Contacto" class="caja">
+                <ul>
+                    <li><h5>Manuel Caceres</h5><span>86897061</span></li>
+                    <li><h5>Manuel Caceres</h5><span>86897061</span></li>
+                    <li><h5>Manuel Caceres</h5><span>86897061</span></li>
+                    <li><h5>Manuel Caceres</h5><span>86897061</span></li>
+                    
+                </ul>
+            </div>
+        </div>
+
+        <!-- The Modal -->
+        <div id="id01" class="modal">
+            <div class="mensaje">
+                <span class="material-icons">
+                    check_circle
+                </span>
+                <div class="texto">
+                    <h2>Contacto Agregado</h2>
+                    <p>Ahora puedes buscarlo en tu 
+                        lista de contactos </p>
+                </div>      
+            </div>
+        </div>
+    </main>
+</body>
+</html>
