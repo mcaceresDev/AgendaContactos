@@ -1,54 +1,120 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var lista = document.querySelector("#lista");
 const nombre = document.querySelector("#nombre");
 const apellido = document.querySelector("#apellido");
 const numero = document.querySelector("#numero");
 const correo = document.querySelector("#correo");
 
-// var contadorId = 1;
-
 const db = window.localStorage;
 
-const btnAgrega = document.querySelector("#btnAgrega");
-btnAgrega.addEventListener("click", guardaDatos = ()  => {  
-    // e.preventDefault();
-    let contacto = {
-        id: contadorId,
-        nombre: nombre.value,
-        apellido: apellido.value,
-        numero: numero.value,
-        correo: correo.value
-    }
-    guardarContacto(db, contacto);
-    // agregaFila(contacto);
-    contadorId++;
-    document.getElementById("formulario").reset();
+//Menu de pestañas
+const despliegaPestana = (e) =>{
+    e.preventDefault();
+    let objetivo = e.target.getAttribute("href");document.querySelectorAll(".contenido-pestanas .bloque")
+    .forEach( (elemento) => {
+      elemento.classList.remove("activo");
+    });
+    document.querySelector(objetivo).classList.add("activo");
+
+    //-------------------------------------------------------
+
+    let pestana = e.target.parentNode;
+    document.querySelectorAll(".navegacion li").forEach( (elemento) => {
+        elemento.classList.remove("active");
+    });
+
+    pestana.classList.add("active");
+}
+//Listeners
+document.querySelectorAll(".navegacion li a").forEach( (elemento) => {
+    elemento.addEventListener("click", despliegaPestana)
 });
 
 
-const guardarContacto = (db, contacto) => {
-    db.setItem(contacto.id, JSON.stringify(contacto));
-    cargarContactos(db);
+
+//****************************** */
+let Id;
+let historial = [];
+//***************************** */
+const recogeDatos = (e) => {
+    e.preventDefault();
+    let valida = false;
+    
+    do {
+        Id = Math.round(Math.random() * (5 - 1) + 1);
+        if (historial.includes(Id) && historial.length < 5) {
+            valida = false;
+        }       
+        else if(historial.length < 5 ) {
+            historial.push(Id);
+            valida = true;
+            
+            document.querySelector("#md1").classList.add("visible")
+            setTimeout(function(){
+                document.querySelector("#md1").classList.remove("visible");
+            },2000)
+            document.querySelector("#formulario").reset();
+            
+            guardarContacto(db, Id);
+        }
+        else{
+            valida = true;
+        
+            document.querySelector("#md2").classList.add("visible")
+            setTimeout(function(){
+                document.querySelector("#md2").classList.remove("visible");
+            },2000)
+        }
+
+    } while (valida === false);
+    
 }
+const btnAgrega = document.querySelector("#btnAgrega");
+btnAgrega.addEventListener("click", recogeDatos);
+
+
+const guardarContacto = (db, Id) => {
+    let contacto = {
+            id: Id,
+            nombre: nombre.value,
+            apellido: apellido.value,
+            numero: numero.value,
+            correo: correo.value
+        }
+    db.setItem(contacto.id, JSON.stringify(contacto));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const btnAgrega99 = document.querySelector("#btnAgrega");
+// btnAgrega99.addEventListener("click", guardaDatos = ()  => {  
+//     e.preventDefault();
+//     let contacto = {
+//         id: contadorId,
+//         nombre: nombre.value,
+//         apellido: apellido.value,
+//         numero: numero.value,
+//         correo: correo.value
+//     }
+//     guardarContacto(db, contacto);
+//     agregaFila(contacto);
+//     contadorId++;
+//     document.getElementById("formulario").reset();
+// });
+
+
+
 
 const cargarContactos = (db) => {
     let claves = Object.keys(db);
@@ -121,7 +187,6 @@ const agregaFila = (contacto) => {
 
 // };
 
-cargarContactos(db);
 
 
 const editar = (e) => {
@@ -140,8 +205,8 @@ const editar = (e) => {
     // });
 }
 
-var btnEdita = document.querySelector("button.btn-edit");
-btnEdita.addEventListener("click", editar);
+// var btnEdita = document.querySelector("button.btn-edit");
+// btnEdita.addEventListener("click", editar);
 
 
 

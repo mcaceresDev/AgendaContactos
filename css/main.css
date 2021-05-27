@@ -2,6 +2,8 @@
     height: 15vh;
     padding: 20px;
     background-color: #1a9996;
+    display: flex;
+    align-items: center;
 }
 .cabecera h2{
     color: whitesmoke;
@@ -10,17 +12,14 @@ main{
     width: 100%;
     min-height: 85vh;
     background-color: whitesmoke;
-    position: fixed;
+    padding: 30px 0;
 }
 .navegacion{
-    padding: 20px;
-    margin: 30px auto;
-    height: 40px;
+    margin-bottom: 0;
 }
 .navegacion ul{
     display: flex;
     row-gap: 10px;
-    
 }
 .navegacion li{
     padding: 5px;
@@ -50,11 +49,9 @@ li.active{
     row-gap: 10px;
     margin: 20px;
     align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0.39);
-    border-radius: 10px;
+    /* border: 1px solid rgba(0, 0, 0, 0.39);
+    border-radius: 10px; */
     padding: 10px 0;
-    /* background-color: rgba(6, 37, 36, 0.486); */
-    /* background-color: rgba(0, 0, 0, 0.466); */
 }
 .form-group{
     display: flex;
@@ -80,21 +77,40 @@ li.active{
 
 /*------ BLOQUES (PESTAÑAS) --------*/
 .bloque{
-    display: none;
+    display: none; 
 }
+
 
 .bloque.activo{
     display: flex;
+    /* margin: 0 20px; */
+    border: 1px solid rgba(0, 0, 0, 0.39);
+    border-radius: 10px;
+    padding: 15px 5px;
 }
 
-.bloque-list{
-    margin: 0 20px;
+#bloque-list{
+    
     flex-direction: column;
     row-gap: 15px;
 }
-.bloque-list ul li{
+#bloque-list ul li{
     padding: 5px;
 }
+
+/*---------------------------------*/
+.lista li{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.lista button{
+    border: solid black 1px;
+    border-radius: 50px;
+    /* background-color: rgba(245, 245, 245, 0.603); */
+}
+
 
 
 /*VENTANA MODAL*/
@@ -116,7 +132,7 @@ li.active{
         flex-direction: column;
     }
 
-    .mensaje{
+    .succes, .error{
         max-width: 250px;
         min-height: 200px;
         margin: auto;
@@ -128,12 +144,17 @@ li.active{
         flex-direction: column;
         align-items: center;
     }
-    .mensaje span{
+    .succes span{
         font-weight: bold;
         color:#1a9996;
         font-size: var(--Jumbo);
     }
-    .mensaje .texto{
+    .error span{
+        font-weight: bold;
+        color:#991e1a;
+        font-size: var(--Jumbo);
+    }
+    .modal .texto{
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -170,3 +191,87 @@ li.active{
     from {transform: scale(0)}
     to {transform: scale(1)}
     }
+
+
+    /* Responsive Design */
+
+    @media screen and (min-width:300px) {
+        .navegacion li{
+            padding: 15px;
+        }
+        #formulario{
+            margin: auto;
+        }
+    }
+
+
+    @media screen and (min-width:500px) {
+        .contenido-pestanas{
+            max-width: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.39);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            padding: 10PX;
+        }
+
+        .bloque.activo{
+            padding: 15px;
+            min-width: 350px; 
+            border: none;
+            margin: 0 20px;
+        }
+
+        .navegacion li{
+            padding: 15px;
+        }
+
+        main{
+            width: 100%;
+            min-height: 85vh;
+            background-color: whitesmoke;
+            padding: 30px;
+        }
+    }
+
+    @media screen and (min-width:700px) {
+        
+        .bloque.activo{
+            border: 1px solid rgba(0, 0, 0, 0.39);
+            border-radius: 10px;
+            padding: 5px;
+            min-width: 500px;
+        }
+
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
