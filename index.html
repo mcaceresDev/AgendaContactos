@@ -18,7 +18,7 @@
         <nav class="navegacion">
             <ul>
                 <li class="active"><a href="#bloque-form">Agregar contacto</a></li>
-                <li><a href="#bloque-list">Listado de contactos</a></li>
+                <li><a id="listado-items" href="#bloque-list">Listado de contactos</a></li>
             </ul>
         </nav>
 
@@ -55,7 +55,7 @@
             <div id="bloque-list" class="bloque">
                 <h3>Listado de Contactos</h3>
                 <input type="text" class="caja" placeholder="Buscar Contacto" class="caja">
-                <div class="lista">
+                <div id="lista">
                     <ul>
                         <li>Manuel Caceres 
                             <span>
@@ -99,11 +99,57 @@
             </div>
         </div>
 
-        <!-- Modal Edicion -->
+        
+        <!-- Modal Confiramcion Eliminar -->
         <div id="md3" class="modal">
+            <div class="confirm animate">
+                <span class="material-icons">
+                    error
+                </span>
+                <div class="texto">
+                    <h2>¿Estas Seguro?</h2>
+                    <p>No podras recuperar la información luego</p> 
+                </div>      
+                <span>
+                    <button class="btnBorrar">Aceptar</button>
+                    <button class="btnCancelar">Cancelar</button>
+                </span>
+            </div>
+        </div>
+
+        <!-- Modal Edicion -->
+        <div id="md4" class="modal">
             <div class="edicion animate">
                 <div class="info">
-                    
+
+                    <form class="frmEdicion">
+                        <fieldset class="form-group">
+                            <span class="material-icons">
+                                account_box
+                            </span>
+                            <input  type="text" placeholder="Nombre del Contacto"  name="nombres" class="caja nombreC">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <span class="material-icons">
+                                people_alt
+                                </span>
+                            <input  type="text" placeholder="Apellidos"  name="apellidos" class="caja apellidoC">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <span class="material-icons">
+                                local_phone
+                                </span>
+                            <input type="number" placeholder="Número"  name="numero" class="caja numeroC">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <span class="material-icons">
+                                email
+                                </span>
+                            <input type="email" placeholder="Correo"  name="email" class="caja emailC">
+                        </fieldset>
+                        <button id="reemplaza">Modificar</button>
+                    </form>
+
                 </div>      
             </div>
         </div>

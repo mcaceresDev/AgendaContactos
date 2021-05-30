@@ -4,6 +4,8 @@
     background-color: #1a9996;
     display: flex;
     align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 .cabecera h2{
     color: whitesmoke;
@@ -43,14 +45,12 @@ li.active{
     background-color: #062524;
 }
 
-#formulario{
+#formulario, .frmEdicion{
     display: flex;
     flex-direction: column;
     row-gap: 10px;
     margin: 20px;
     align-items: center;
-    /* border: 1px solid rgba(0, 0, 0, 0.39);
-    border-radius: 10px; */
     padding: 10px 0;
 }
 .form-group{
@@ -99,19 +99,28 @@ li.active{
 }
 
 /*---------------------------------*/
-.lista li{
+#lista li{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
 }
-.lista button{
+#lista button{
     border: solid black 1px;
     border-radius: 50px;
     /* background-color: rgba(245, 245, 245, 0.603); */
 }
-
-
+.contacto{
+    max-height: 40px;
+    overflow: hidden;
+    cursor: pointer;
+    border-bottom: solid rgba(22, 22, 22, 0.301) 1px;
+    margin-top: 15px;
+    transition: .6s max-height;
+}
+.contacto.completo{
+    max-height: 200px;
+}
 
 /*VENTANA MODAL*/
 .modal {
@@ -132,11 +141,11 @@ li.active{
         flex-direction: column;
     }
 
-    .succes, .error{
-        max-width: 250px;
+    .succes, .error, .confirm, .edicion{
+        max-width: 200px;
         min-height: 200px;
         margin: auto;
-        padding: 5px;
+        padding: 10px;
         background-color: whitesmoke;
         border-radius: 5px;
         
@@ -144,12 +153,15 @@ li.active{
         flex-direction: column;
         align-items: center;
     }
+    .edicion{
+        max-width: 250px;
+    }
     .succes span{
         font-weight: bold;
         color:#1a9996;
         font-size: var(--Jumbo);
     }
-    .error span{
+    .error span, .confirm span{
         font-weight: bold;
         color:#991e1a;
         font-size: var(--Jumbo);
@@ -239,10 +251,14 @@ li.active{
         .bloque.activo{
             border: 1px solid rgba(0, 0, 0, 0.39);
             border-radius: 10px;
-            padding: 5px;
+            padding: 20px 15px;
             min-width: 500px;
         }
 
+        .cabecera{
+            text-align: left;
+            justify-content: flex-start;
+        }
         
     }
 
