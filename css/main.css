@@ -1,3 +1,4 @@
+/* Cabecera */
 .cabecera{
     height: 15vh;
     padding: 20px;
@@ -10,12 +11,18 @@
 .cabecera h2{
     color: whitesmoke;
 }
+
+/*-------------------------------------*/
+/* CONTENIDO PRINCIPAL */
+/*-------------------------------------*/
 main{
     width: 100%;
     min-height: 85vh;
     background-color: whitesmoke;
     padding: 30px 0;
 }
+
+/* Pestañas */
 .navegacion{
     margin-bottom: 0;
 }
@@ -35,7 +42,7 @@ main{
 }
 
 li a{
-    font-family: Roboto;
+    font-family: RobotoB;
     font-size: 14px;
     text-decoration: none;
     color: rgba(253, 253, 253, 0.87);
@@ -45,6 +52,7 @@ li.active{
     background-color: #062524;
 }
 
+/* Formulario de contacto y edicion */
 #formulario, .frmEdicion{
     display: flex;
     flex-direction: column;
@@ -99,6 +107,8 @@ li.active{
 }
 
 /*---------------------------------*/
+/* LISTA DE CONTACTOS */
+/*-------------------------------------*/
 #lista li{
     display: flex;
     flex-flow: row wrap;
@@ -108,7 +118,7 @@ li.active{
 #lista button{
     border: solid black 1px;
     border-radius: 50px;
-    /* background-color: rgba(245, 245, 245, 0.603); */
+
 }
 .contacto{
     max-height: 40px;
@@ -122,7 +132,7 @@ li.active{
     max-height: 200px;
 }
 
-/*VENTANA MODAL*/
+/*VENTANAS MODALES*/
 .modal {
     display: none; 
     position: fixed;
@@ -174,7 +184,6 @@ li.active{
         row-gap: 15px;
     }
     
-    /* Formulario */
     .modal-content {
     background-color: rgba(33, 37, 41, .8);
     margin: auto;
@@ -204,8 +213,9 @@ li.active{
     to {transform: scale(1)}
     }
 
-
-    /* Responsive Design */
+/*-------------------------------------*/
+/* Responsive Design */
+/*-------------------------------------*/
 
     @media screen and (min-width:300px) {
         .navegacion li{

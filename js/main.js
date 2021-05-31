@@ -1,134 +1,3 @@
-var lista = document.querySelector("#lista");
-const nombre = document.querySelector("#nombre");
-const apellido = document.querySelector("#apellido");
-const numero = document.querySelector("#numero");
-const correo = document.querySelector("#correo");
-
-const db = window.localStorage;
-
-//Menu de pestañas
-const despliegaPestana = (e) =>{
-    e.preventDefault();
-    
-    let objetivo = e.target.getAttribute("href");document.querySelectorAll(".contenido-pestanas .bloque")
-    .forEach( (elemento) => {
-      elemento.classList.remove("activo");
-    });
-    document.querySelector(objetivo).classList.add("activo");
-    
-    //-------------------------------------------------------
-
-    let pestana = e.target.parentNode;
-    document.querySelectorAll(".navegacion li").forEach( (elemento) => {
-        elemento.classList.remove("active");
-    });
-
-    pestana.classList.add("active");
-}
-//Listeners
-document.querySelectorAll(".navegacion li a").forEach( (elemento) => {
-    elemento.addEventListener("click", despliegaPestana)
-});
-
-
-
-//****************************** */
-
-var historial = [];
-//***************************** */
-const recogeDatos = (e) => {
-    e.preventDefault();
-
-    let valida = false;
-    
-    do {
-        let Id = Math.round(Math.random() * (5 - 1) + 1);
-
-        if (historial.includes(Id) && historial.length < 5) {
-            valida = false;
-        }       
-        else if(historial.length < 5 ) {
-            
-            historial.push(Id);
-            guardarContacto(db, Id);
-
-            valida = true;
-            
-        }
-        else{
-            valida = true;
-        
-            document.querySelector("#md2").classList.add("visible")
-            setTimeout(function(){
-                document.querySelector("#md2").classList.remove("visible");
-            },2000)
-        }
-
-    } while (valida === false);
-    
-}
-
-//---- Agregar Contactos (Guardarlos)
-
-const btnAgrega = document.querySelector("#btnAgrega");
-btnAgrega.addEventListener("click", recogeDatos);
-
-
-const guardarContacto = (db, Id) => {
-    let contacto = {
-            id: Id,
-            nombre: nombre.value,
-            apellido: apellido.value,
-            numero: numero.value,
-            correo: correo.value
-        }
-    
-    let verifica = verificaContacto(contacto);
-
-    if (verifica === true) {
-        let mdError =document.querySelector("#md2");
-        
-        document.querySelector("#md2 .texto").innerHTML = "<h2>El contacto ya existe en tu lista</h2>" + 
-        "<p>El número o correo ya están asociados a un contacto. Verifica y reintenta</p>";
-        mdError.classList.add("visible")
-        
-        setTimeout(function(){
-            document.querySelector("#md2").classList.remove("visible");
-        },2000)
-        
-        return;
-    }
-    else{
-        db.setItem(contacto.id, JSON.stringify(contacto));
-        
-        document.querySelector("#md1").classList.add("visible")
-            setTimeout(function(){
-                document.querySelector("#md1").classList.remove("visible");
-            },2000)
-            document.querySelector("#formulario").reset();
-
-        cargarContactos(db);
-    }
-}
-
-//Validar si existe contacto
-function verificaContacto (valores){
-    let claves = Object.keys(db);
-    
-    for(clave of claves){
-        let contacto = JSON.parse(db.getItem(clave));
-        
-        if (contacto.numero == valores.numero || contacto.correo === valores.correo) {
-               
-            historial.pop();
-            return true;
-        }
-        else{
-            return false;
-        }
-        
-    }
-}
 
 // Generar Listado de Contactos Guardados
 const cargarContactos =  (db) => {
@@ -168,7 +37,9 @@ const cargarContactos =  (db) => {
 
 cargarContactos(db);
  
-
+/*--------------------------------------*/ 
+// ELIMINACION DE CONTACTOS
+/*--------------------------------------*/
 function eliminarContacto(e){
     e.stopPropagation();
     let btnGroup = this.parentNode;
@@ -187,7 +58,9 @@ function eliminarContacto(e){
 
 }
 
-
+/*--------------------------------------*/ 
+// EDICION DE CONTACTOS
+/*--------------------------------------*/
 function editarContacto(e){
     e.stopPropagation();
 
@@ -197,10 +70,10 @@ function editarContacto(e){
     
     let contacto = JSON.parse(db.getItem(id));
     
-    let Nombres = document.querySelector(".frmEdicion .nombreC");
-    let Apellido = document.querySelector(".frmEdicion .apellidoC");
-    let Numero = document.querySelector(".frmEdicion .numeroC");
-    let Email = document.querySelector(".frmEdicion .emailC");
+    let Nombres = document.querySelector("#nombreC");
+    let Apellido = document.querySelector("#apellidoC");
+    let Numero = document.querySelector("#numeroC");
+    let Email = document.querySelector("#emailC");
 
     Nombres.value = contacto.nombre;
     Apellido.value = contacto.apellido;
@@ -209,14 +82,15 @@ function editarContacto(e){
 
     document.querySelector("#md4").classList.add("visible");    
     edita(db, id)  
+
 }
 
 
 const edita = (db, Id) => {
-    let Nombres = document.querySelector(".frmEdicion .nombreC");
-    let Apellido = document.querySelector(".frmEdicion .apellidoC");
-    let Numero = document.querySelector(".frmEdicion .numeroC");
-    let Email = document.querySelector(".frmEdicion .emailC");
+    let Nombres = document.querySelector("#nombreC");
+    let Apellido = document.querySelector("#apellidoC");
+    let Numero = document.querySelector("#numeroC");
+    let Email = document.querySelector("#emailC");
 
     
     document.querySelector("#reemplaza").addEventListener("click", function(e){
@@ -232,7 +106,41 @@ const edita = (db, Id) => {
 
             db.setItem(contacto.id, JSON.stringify(contacto));
             document.querySelector("#md4").classList.remove("visible");
-            cargarContactos(db);
+            location.reload();
+            // cargarContactos(db);
     });
 }
+
+
+/*--------------------------------------*/ 
+//**********  BUSQUEDA DINAMICA DE CONTACTOS ****************/
+/*--------------------------------------*/
+
+document.getElementById("searchBox").addEventListener("keyup", buscar);
+
+function buscar(e) {
+        
+    let texto = e.target.value.toLowerCase();
+    
+    document.querySelectorAll('#lista ul').forEach(function(item){
+        
+        if(item.textContent.toLowerCase().includes(texto)){
+            item.style.display = 'block';
+        }else{
+            item.style.display = 'none';
+        }
+    });
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 

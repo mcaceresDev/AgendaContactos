@@ -1,3 +1,18 @@
+@font-face {
+	font-family: Montserrat;
+	src: url("./Montserrat-Regular.ttf");
+}
+
+@font-face {
+	font-family: Roboto;
+	src: url("./Roboto-Regular.ttf");
+}
+@font-face {
+	font-family: RobotoB;
+	src: url("./Roboto-Bold.ttf");
+}
+
+
 /* -----------RESET CSS------------------ */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -59,11 +74,11 @@ table {
 
 h1, h2, h3, h4{
 	font-family: Montserrat;
-	/* text-align: center; */
-}
-h1, h2, h3, h4 label{
 	font-weight: bold;
 }
+/* label{
+	font-family: RobotoB;
+} */
 h2{
 	font-size: var(--Titulo);
 }
@@ -71,7 +86,7 @@ h3{
 	font-size: var(--subTitulo);
 }
 
-p, label, th, td, tr, button{
+p, label, th, td, tr, button, li{
 	font-family: Roboto;
 }
 

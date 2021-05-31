@@ -11,9 +11,12 @@
 </head>
 <body>
 
+
     <header class="cabecera">
         <h2>Agenda de Contactos</h2>
     </header>
+    
+    
     <main>
         <nav class="navegacion">
             <ul>
@@ -23,19 +26,21 @@
         </nav>
 
         <div class="contenido-pestanas">
+            <!-- BLOQUE DE AGREGADO -->
             <div id="bloque-form" class="bloque activo">
+                <!-- FORMULARIO DE AGREGACION -->
                 <form id="formulario" action="">
                     <fieldset class="form-group">
                         <span class="material-icons">
                             account_box
                         </span>
-                        <input  type="text" placeholder="Nombre del Contacto"  name="nombres" id="nombre" class="caja">
+                        <input  type="text" placeholder="Nombre del Contacto" name="nombres" id="nombre" class="caja">
                     </fieldset>
                     <fieldset class="form-group">
                         <span class="material-icons">
                             people_alt
                             </span>
-                        <input  type="text" placeholder="Apellidos"  name="apellidos" id="apellido" class="caja">
+                        <input  type="text" placeholder="Apellidos" name="apellidos" id="apellido" class="caja">
                     </fieldset>
                     <fieldset class="form-group">
                         <span class="material-icons">
@@ -52,26 +57,19 @@
                     <button id="btnAgrega">Agregar</button>
                 </form>
             </div>
+
+            <!-- BLOQUE DE LISTADO DE CONTACTOS -->
             <div id="bloque-list" class="bloque">
                 <h3>Listado de Contactos</h3>
-                <input type="text" class="caja" placeholder="Buscar Contacto" class="caja">
+                <input type="text" id="searchBox" class="caja" placeholder="Buscar Contacto">
+                <!-- CONTENEDOR DE LISTA DE CONTACTOS -->
                 <div id="lista">
-                    <ul>
-                        <li>Manuel Caceres 
-                            <span>
-                                <button class="material-icons">edit</button> 
-                                <button class="material-icons">delete_outline</button>
-                            </span>
-                        </li>
-                        <li>86897061</li>
-                        <li>mjcaceres17@gmail.com</li>
-                    </ul>
                     
                 </div>
             </div>
         </div>
 
-        <!-- Modal Mensajes -->
+        <!-- Modal Mensaje EXITO -->
         <div id="md1" class="modal">
             <div class="succes animate">
                 <span class="material-icons">
@@ -121,31 +119,31 @@
         <div id="md4" class="modal">
             <div class="edicion animate">
                 <div class="info">
-
+                    <!-- FORMULARIO DE EDICION -->
                     <form class="frmEdicion">
                         <fieldset class="form-group">
                             <span class="material-icons">
                                 account_box
                             </span>
-                            <input  type="text" placeholder="Nombre del Contacto"  name="nombres" class="caja nombreC">
+                            <input  type="text" placeholder="Nombre del Contacto"  name="nombres" id="nombreC" class="caja">
                         </fieldset>
                         <fieldset class="form-group">
                             <span class="material-icons">
                                 people_alt
                                 </span>
-                            <input  type="text" placeholder="Apellidos"  name="apellidos" class="caja apellidoC">
+                            <input  type="text" placeholder="Apellidos"  name="apellidos" id="apellidoC" class="caja">
                         </fieldset>
                         <fieldset class="form-group">
                             <span class="material-icons">
                                 local_phone
                                 </span>
-                            <input type="number" placeholder="Número"  name="numero" class="caja numeroC">
+                            <input type="number" placeholder="Número"  name="numero" id="numeroC" class="caja">
                         </fieldset>
                         <fieldset class="form-group">
                             <span class="material-icons">
                                 email
                                 </span>
-                            <input type="email" placeholder="Correo"  name="email" class="caja emailC">
+                            <input type="email" placeholder="Correo"  name="email" id="emailC" class="caja">
                         </fieldset>
                         <button id="reemplaza">Modificar</button>
                     </form>
@@ -153,7 +151,11 @@
                 </div>      
             </div>
         </div>
+
+
     </main>
 </body>
+    <script src="./js/iniciales.js"></script>
+    <script src="./js/crearContacto.js"></script>
     <script src="./js/main.js"></script>
 </html>
