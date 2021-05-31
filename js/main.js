@@ -44,13 +44,14 @@ function eliminarContacto(e){
     e.stopPropagation();
     let btnGroup = this.parentNode;
     let li = btnGroup.parentNode;
-    let contacto = li.parentNode.dataset.ident;
+    let contacto = parseInt(li.parentNode.dataset.ident);
         
     let modalElim = document.querySelector("#md3");
     modalElim.classList.add("visible");
     let btnBorrar = document.querySelector("#md3  .btnBorrar").addEventListener("click", () => {
         db.removeItem(contacto);
-        historial.splice(0, contacto - 1);
+        // historial.splice(contacto - 1, 1);
+        console.log(contacto - 1);
         cargarContactos(db);
         modalElim.classList.remove("visible");
     }); 

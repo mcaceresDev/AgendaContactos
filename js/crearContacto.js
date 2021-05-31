@@ -23,9 +23,13 @@ const generaId = (e) => {
         else{
             valida = true;
         
-            document.querySelector("#md2").classList.add("visible")
+            let mdError = document.querySelector("#md2");
+            document.querySelector("#md2 .texto").innerHTML = "<h2>No puedes guardar mas contactos</h2>" + 
+            "<p>Has llenado la memoria, elimina algunos contactos y vuelve a intentar</p>";
+        
+            mdError.classList.add("visible")
             setTimeout(function(){
-                document.querySelector("#md2").classList.remove("visible");
+                mdError.classList.remove("visible");
             },2000)
         }
 
@@ -51,7 +55,7 @@ const guardarContacto = (db, Id) => {
     let verifica = verificaContacto(contacto);
 
     if (verifica === true) {
-        let mdError =document.querySelector("#md2");
+        let mdError = document.querySelector("#md2");
         
         document.querySelector("#md2 .texto").innerHTML = "<h2>El contacto ya existe en tu lista</h2>" + 
         "<p>El número o correo ya están asociados a un contacto. Verifica y reintenta</p>";
