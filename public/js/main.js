@@ -48,15 +48,18 @@ function eliminarContacto(e){
         
     let modalElim = document.querySelector("#md3");
     modalElim.classList.add("visible");
-    let btnBorrar = document.querySelector("#md3  .btnBorrar").addEventListener("click", () => {
+    //Agregamos el listener al boton de borrar del modal para que ejecute la funcion de eliminacion
+    let btnBorrar = document.querySelector("#md3 .btnBorrar").addEventListener("click", () => {
         db.removeItem(contacto);
-        // historial.splice(contacto - 1, 1);
-        console.log(contacto - 1);
-        cargarContactos(db);
+        let index = contacto-1;
+        
+        historial.splice(historial.indexOf(index), 1);
+        // cargarContactos(db);
         modalElim.classList.remove("visible");
+        location.reload();
     }); 
+    //agregamos el listener para cerrar el modal en caso de no querer borrar el contacto
     let btnCancelar = document.querySelector("#md3 .btnCancelar").addEventListener("click", () => modalElim.classList.remove("visible"));
-
 }
 
 /*--------------------------------------*/ 

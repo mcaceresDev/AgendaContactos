@@ -1,5 +1,14 @@
 //****************************** */
 var historial = [];
+
+const historico = ()=>{
+    claves = Object.keys(db);
+    for (const clave of claves) {      
+       historial.push(parseInt(clave));
+    }
+}
+
+historico();
 //***************************** */
 const generaId = (e) => {
     e.preventDefault();
