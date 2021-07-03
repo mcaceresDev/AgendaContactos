@@ -151,7 +151,7 @@ li.active{
         flex-direction: column;
     }
 
-    .succes, .error, .confirm, .edicion{
+    .succes, .error, .confirm, .edicion, .warning{
         max-width: 200px;
         min-height: 200px;
         margin: auto;
@@ -162,6 +162,11 @@ li.active{
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    .warning span{
+        font-weight: bold;
+        color:rgb(223, 219, 26);
+        font-size: var(--Jumbo);
     }
     .edicion{
         max-width: 250px;
