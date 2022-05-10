@@ -13,7 +13,8 @@ const db = window.localStorage;
 const despliegaPestana = (e) =>{
     e.preventDefault();
     
-    let objetivo = e.target.getAttribute("href");document.querySelectorAll(".contenido-pestanas .bloque")
+    let objetivo = e.target.getAttribute("href");
+    document.querySelectorAll(".contenido-pestanas .bloque")
     .forEach( (elemento) => {
       elemento.classList.remove("activo");
     });

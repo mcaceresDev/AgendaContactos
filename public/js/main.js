@@ -137,7 +137,34 @@ function buscar(e) {
     
 }
 
+// METODOS NUEVOS
+const inicial = () => {
+    const Subject = new Contact()
 
+    contacto = {
+        nombre: "Manuel",
+        apellido: "Caceres",
+        telefono: 84569712,
+        correo: "algo@algo.com"
+    }
+
+    const Observer = new ContactService()
+    Observer.createContact(contacto)
+    
+    Subject.subscribe(Observer)
+    // const idList = Object.keys(db)
+    // let lastId   = Math.max(idList)
+
+    // if (lastId >= 5 ) {
+    //     console.log("Ya no puedes guardar mas");
+    // } 
+    // else{
+    //     lastId = lastId + 1
+    //     console.log(`Se crea el contacto con id = ${lastId}`);
+    // }
+}
+
+inicial()
 
 
 
