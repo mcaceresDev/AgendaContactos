@@ -139,19 +139,35 @@ function buscar(e) {
 
 // METODOS NUEVOS
 const inicial = () => {
-    const Subject = new Contact()
+    // const Subject = new Contact()
 
-    contacto = {
-        nombre: "Manuel",
-        apellido: "Caceres",
-        telefono: 84569712,
-        correo: "algo@algo.com"
+    // contacto = {
+    //     nombre: "Manuel",
+    //     apellido: "Caceres",
+    //     telefono: 84569712,
+    //     correo: "algo@algo.com"
+    // }
+
+    // const Observer = new ContactService()
+    // Observer.createContact(contacto)
+
+    // Subject.subscribe(Observer)
+
+    let obj = {
+        nombres: "",
+        apellidos: "",
+        telefono: 0,
+        correo: ""
     }
 
-    const Observer = new ContactService()
-    Observer.createContact(contacto)
+    document.querySelectorAll("#formulario .caja").forEach((txt)=>{
+        let formFields = Object.keys(obj)
+        for (let campo of formFields) {
+            formFields.reduce(...obj, obj.campo=txt.campo)
+        }
+    })
     
-    Subject.subscribe(Observer)
+    console.log(obj);
     // const idList = Object.keys(db)
     // let lastId   = Math.max(idList)
 

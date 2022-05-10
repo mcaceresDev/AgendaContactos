@@ -6,7 +6,7 @@ const nombre = document.querySelector("#nombre");
 const apellido = document.querySelector("#apellido");
 const numero = document.querySelector("#numero");
 const correo = document.querySelector("#correo");
-
+const formulario = document.querySelector("#formulario")
 const db = window.localStorage;
 
 //Menu de pestañas
