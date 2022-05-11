@@ -1,11 +1,11 @@
 /*-------------------------------------*/
 // VARIABLES GLOBALES
 /*-------------------------------------*/
-var lista = document.querySelector("#lista");
-const nombre = document.querySelector("#nombre");
-const apellido = document.querySelector("#apellido");
-const numero = document.querySelector("#numero");
-const correo = document.querySelector("#correo");
+const lista = document.querySelector("#lista");
+const txtNombre = document.querySelector("#nombre");
+const txtApellido = document.querySelector("#apellido");
+const txtNumero = document.querySelector("#numero");
+const txtCorreo = document.querySelector("#correo");
 const formulario = document.querySelector("#formulario")
 const db = window.localStorage;
 

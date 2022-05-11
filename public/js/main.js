@@ -138,7 +138,7 @@ function buscar(e) {
 }
 
 // METODOS NUEVOS
-const inicial = () => {
+// const inicial = () => {
     // const Subject = new Contact()
 
     // contacto = {
@@ -153,21 +153,7 @@ const inicial = () => {
 
     // Subject.subscribe(Observer)
 
-    let obj = {
-        nombres: "",
-        apellidos: "",
-        telefono: 0,
-        correo: ""
-    }
 
-    document.querySelectorAll("#formulario .caja").forEach((txt)=>{
-        let formFields = Object.keys(obj)
-        for (let campo of formFields) {
-            formFields.reduce(...obj, obj.campo=txt.campo)
-        }
-    })
-    
-    console.log(obj);
     // const idList = Object.keys(db)
     // let lastId   = Math.max(idList)
 
@@ -178,9 +164,9 @@ const inicial = () => {
     //     lastId = lastId + 1
     //     console.log(`Se crea el contacto con id = ${lastId}`);
     // }
-}
+// }
 
-inicial()
+// inicial()
 
 
 
