@@ -136,34 +136,43 @@ const inicial = () => {
     existContact(contacto)    
 }
 
-const test = (e) =>{
-    e.preventDefault();
-    console.log("ejecutando...");
-    
+const generateId = ()=> {
     let idList = Object.keys(db)
-    let lastId 
-    
+    let lastId
+
     if (idList.length == 0) {
         lastId = 1
     }
-    else{
+    else {
         lastId = Math.max(...idList) + 1
     }
+
+    return lastId
+}
+
+const test = (e) =>{
+    e.preventDefault();
+
+    const Subject = new Contact()
+    const Observer = new ContactService()
     
     let contacto = {
-        id: lastId,
+        id: generateId(),
         nombre: nombre.value,
         apellido: apellido.value,
         numero: numero.value,
         correo: correo.value
     }
-    const Subject = new Contact()
-    const Observer = new ContactService()
-    
+
     const valid = new Validator(contacto)
+    
     if (valid.emptyFields()) {
-        return
+        const modal     = new Modal
+        const message   = "Campos Vacíos. Los campos Nombre, Telefono y Correo son obligatorios"
+
+        return modal.getInstanceModal(warning, message)
     } 
+
     else if (valid.existContact()) {
         valid.existContact()
         return
@@ -175,7 +184,6 @@ const test = (e) =>{
     else{
         Observer.createContact(contacto)
         Subject.subscribe(Observer)
-        console.log(Observer.getContacts())
     }   
     console.log(idList)
     

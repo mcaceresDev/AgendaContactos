@@ -32,14 +32,14 @@ class Validator {
         }
     }
 
-    existContact () {
+    existContact() {
         let claves = Object.keys(db);
         // recorremos las claves (id) de los contactos   
         for (clave of claves) {
             let contacto = JSON.parse(db.getItem(clave));
-    
+
             //si el numero o el correo ya existen eliminamos el ultimo Id guardado en el historial
-            if (contacto.numero == this._contacto.numero || contacto.correo === this._contacto.correo) {  
+            if (contacto.numero == this._contacto.numero || contacto.correo === this._contacto.correo) {
                 console.log("el contacto ya existe")
                 let mensaje = "el contacto ya existe"
                 return mensaje;
@@ -50,13 +50,18 @@ class Validator {
         }
     }
 
-    generaId () {
-        let idList = Object.keys(db)
-        if (idList[0] !== undefined) {
-            
-        } else {
-            
+    generateId() {
+        
+        let lastId
+
+        if (this.idList.length == 0) {
+            lastId = 1
         }
+        else {
+            lastId = Math.max(...idList) + 1
+        }
+
+        return lastId
     }
 
 }
