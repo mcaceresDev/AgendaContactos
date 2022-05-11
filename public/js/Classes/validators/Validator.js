@@ -50,4 +50,13 @@ class Validator {
         }
     }
 
+    generaId () {
+        let idList = Object.keys(db)
+        if (idList[0] !== undefined) {
+            
+        } else {
+            
+        }
+    }
+
 }

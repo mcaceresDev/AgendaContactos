@@ -139,15 +139,17 @@ const inicial = () => {
 const test = (e) =>{
     e.preventDefault();
     console.log("ejecutando...");
-
-
+    
     let idList = Object.keys(db)
-    let lastId = 1
-
-    if (idList) {
-        lastId = Math.max(idList) + 1
+    let lastId 
+    
+    if (idList.length == 0) {
+        lastId = 1
     }
-
+    else{
+        lastId = Math.max(...idList) + 1
+    }
+    
     let contacto = {
         id: lastId,
         nombre: nombre.value,
@@ -155,7 +157,9 @@ const test = (e) =>{
         numero: numero.value,
         correo: correo.value
     }
-
+    const Subject = new Contact()
+    const Observer = new ContactService()
+    
     const valid = new Validator(contacto)
     if (valid.emptyFields()) {
         return
@@ -169,12 +173,12 @@ const test = (e) =>{
         return
     }
     else{
-        const Subject = new Contact()
-        const Observer = new ContactService()
         Observer.createContact(contacto)
         Subject.subscribe(Observer)
+        console.log(Observer.getContacts())
     }   
-
+    console.log(idList)
+    
 }
 //---- Agregar Contactos (Guardarlos)
 //*********************************************************** */

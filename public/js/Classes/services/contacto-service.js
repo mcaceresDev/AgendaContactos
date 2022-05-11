@@ -7,8 +7,8 @@ class ContactService {
     }
     
     getContacts(){
-        contactIdList = Object.keys(db)
-        contacts      = []
+        let contactIdList = Object.keys(this.db)
+        let contacts      = []
 
         for (const id of contactIdList) {
             let contact = JSON.parse(this.db.getItem(id))
@@ -19,7 +19,7 @@ class ContactService {
     }
 
     createContact(contact){
-        this.db.setItem(contact.Id, JSON.stringify(contact))
+        this.db.setItem(contact.id, JSON.stringify(contact))
         console.log("Exito");
     }
 
