@@ -170,7 +170,13 @@ const test = (e) =>{
         const modal     = new Modal
         const message   = "Campos Vacíos. Los campos Nombre, Telefono y Correo son obligatorios"
 
-        return modal.getInstanceModal(warning, message)
+        const mdWarning = document.querySelector("#md0");
+        mdWarning.innerHTML = modal.getInstanceModal("warning", message)
+        
+        mdWarning.classList.add("visible")
+        setTimeout(function () {
+            mdWarning.classList.remove("visible");
+        }, 2000)
     } 
 
     else if (valid.existContact()) {

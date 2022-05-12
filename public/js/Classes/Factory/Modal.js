@@ -2,22 +2,23 @@
 //Clase creadora
 class Modal {
 
-    getInstanceModal(Key, message){
-        let objType = Object.values()
-        let typeClass = objType.forEach((clase)=>{
-            if (clase == Key) {
-                return clase
+    getInstanceModal(Key, message) {
+        let objType = Object.values(ModalTypes)
+        let typeClass
+
+        objType.forEach((clase) => {
+            if (clase == ModalTypes[Key]) {
+                typeClass = new clase()
             }
         })
 
-        return new ModalTypes.typeClass.render(message)
-        // return new ModalTypes[Keys]().render()
+        return typeClass.render(message)
     }
 }
 
 // Creador concreto A
 class ModalSuccess {
-   
+
     // _message
 
     // constructor(message){
@@ -37,24 +38,36 @@ class ModalSuccess {
 
 // Creador concreto B
 class ModalWarning {
-   
+
     // _message
 
     // constructor(message){
     //     this._message = message
     // }
+
     
-    render(message) {
-        console.log("renderizando aviso")
-        return `<h2>Advertencia</h2>
-                <p>${message}</p>`
-    }
+
+render(message) {
+    console.log("renderizando aviso")
+
+    return `<div class="warning animate">
+                <span class="material-icons">
+                    error_outline
+                </span>
+                <div class="texto">
+                    <h2>Datos Incompletos</h2>
+                    <p>${message}</p>
+                </div>
+            </div>` 
+    // `<h2>Advertencia</h2>
+    //             <p>${message}</p>`
+}
 
 }
 
 // Creador concreto C
 class ModalError {
-    
+
     // _message
 
     // constructor(message){
@@ -70,6 +83,6 @@ class ModalError {
 
 ModalTypes = {
     success: ModalSuccess,
-    error:   ModalError,
+    error: ModalError,
     warning: ModalWarning
 }
