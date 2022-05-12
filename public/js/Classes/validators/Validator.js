@@ -11,14 +11,7 @@ class Validator {
 
     emptyFields() {
         if (this._contacto.nombre == "" || this._contacto.telefono == "" || this._contacto.correo == "") {
-            // let mdWarning = document.querySelector("#md0");
-
-            // mdWarning.classList.add("visible")
-            // setTimeout(function () {
-            //     mdWarning.classList.remove("visible");
-            // }, 2000)
-            console.log("Campos vacíos");
-            let mensaje = "Campos vacíos"
+            
             return true;
         }
     }

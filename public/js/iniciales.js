@@ -7,6 +7,7 @@ const txtApellido = document.querySelector("#apellido");
 const txtNumero = document.querySelector("#numero");
 const txtCorreo = document.querySelector("#correo");
 const formulario = document.querySelector("#formulario")
+const modalContainer = document.querySelector("#md0");
 const db = window.localStorage;
 
 //Menu de pestañas

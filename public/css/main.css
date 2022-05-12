@@ -151,7 +151,7 @@ li.active{
         flex-direction: column;
     }
 
-    .succes, .error, .confirm, .edicion, .warning{
+    .success, .error, .confirm, .edicion, .warning{
         max-width: 200px;
         min-height: 200px;
         margin: auto;
@@ -171,7 +171,7 @@ li.active{
     .edicion{
         max-width: 250px;
     }
-    .succes span{
+    .success span{
         font-weight: bold;
         color:#1a9996;
         font-size: var(--Jumbo);

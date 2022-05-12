@@ -19,38 +19,26 @@ class Modal {
 // Creador concreto A
 class ModalSuccess {
 
-    // _message
-
-    // constructor(message){
-    //     this._message = message
-    // }
-
     render(message) {
-        // response = {
-        //     code: 200,
-        //     msg: this._message
-        // }
-
-        return `<h2>Éxito</h2>
-                <p>${message}</p>`
+        return `<div class="success animate">
+                    <span class="material-icons">
+                        check_circle
+                    </span>
+                    <div class="texto">
+                        <h2>Contacto Agregado</h2>
+                        <p>${message}</p>
+                    </div>      
+                </div>`
     }
 }
 
 // Creador concreto B
 class ModalWarning {
 
-    // _message
+    render(message) {
+        console.log("renderizando aviso")
 
-    // constructor(message){
-    //     this._message = message
-    // }
-
-    
-
-render(message) {
-    console.log("renderizando aviso")
-
-    return `<div class="warning animate">
+        return `<div class="warning animate">
                 <span class="material-icons">
                     error_outline
                 </span>
@@ -58,25 +46,23 @@ render(message) {
                     <h2>Datos Incompletos</h2>
                     <p>${message}</p>
                 </div>
-            </div>` 
-    // `<h2>Advertencia</h2>
-    //             <p>${message}</p>`
-}
-
+            </div>`
+    }
 }
 
 // Creador concreto C
 class ModalError {
 
-    // _message
-
-    // constructor(message){
-    //     this._message = message
-    // }
-
     render(message) {
-        return `<h2>Error</h2>
-                <p>${message}</p>`
+        return `<div class="error animate">
+                    <span class="material-icons">
+                        error
+                    </span>
+                    <div class="texto">
+                        <h2>No puedes guardar mas contactos</h2>
+                        <p>${message}</p>
+                    </div>      
+                </div>`
     }
 
 }
