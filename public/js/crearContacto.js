@@ -21,14 +21,27 @@ const showModal = () => {
     }, 2000)
 }
 
+
+const getContacts = ()=>{
+    let contactIdList = Object.keys(db)
+    let contacts      = []
+
+    for (const id of contactIdList) {
+        let contact = JSON.parse(db.getItem(id))
+        contacts.push(contact)
+    }
+
+    return contacts
+}
+
+
 //Lleva la logica correspondiente para guardar contactos. Contruye diferentes objetos
 // en base los eventos condicionales
 const createContact = (e) => {
     e.preventDefault();
 
     const Subject = new Contact()
-    const Observer = new ContactService()
-
+    
     let contacto = {
         id: generateId(),
         nombre: nombre.value,
@@ -36,18 +49,18 @@ const createContact = (e) => {
         numero: numero.value,
         correo: correo.value
     }
-
+    
     const valid = new Validator(contacto)
     const modal = new Modal
-
+    
     if (valid.emptyFields()) {
         const message = "Campos Vacíos. Los campos Nombre, Telefono y Correo son obligatorios"
-
+        
         modalContainer.innerHTML = modal.getInstanceModal("warning", message)
         showModal()
         return
     }
-
+    
     else if (valid.existContact()) {
         const message = "El número o correo ya están asociados a un contacto. Verifica y vuelve a intentar"
 
@@ -55,21 +68,23 @@ const createContact = (e) => {
         showModal()
         return
     }
-
+    
     else if (valid.maxLimitContacts()) {
         const message = "Has llenado la memoria, elimina algunos contactos"
-
+        
         modalContainer.innerHTML = modal.getInstanceModal("error", message)
         showModal()
         return
     }
-
+    
     else {
+        const Observer = new ContactService(getContacts())
         Observer.createContact(contacto)
         Subject.subscribe(Observer)
-
+        Subject.notify(getContacts())
+        
         const message = "Ahora puedes buscarlo en tu lista de contactos"
-
+        
         modalContainer.innerHTML = modal.getInstanceModal("success", message)
         showModal()
         document.querySelector("#formulario").reset();

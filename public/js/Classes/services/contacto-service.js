@@ -1,9 +1,29 @@
 // Observer
 class ContactService {
     db
+    fnCargaContactos
 
-    constructor(){
+    constructor(fn){
         this.db = window.localStorage
+        this.fnCargaContactos = fn
+    }
+
+    refresh(data){
+        lista.innerHTML = " ";
+
+        data.map((contacto)=>{
+            let item = document.createElement("ul");
+            item.classList.add("contacto");
+    
+            item.innerHTML = `<li>${contacto.nombre} ${contacto.apellido} 
+            <span> 
+                   <button class="material-icons btnEdita">edit</button> 
+                   <button class="material-icons btnElimina">delete_outline</button> 
+            </span> </li>
+            <li>${contacto.numero}</li>
+            <li>${contacto.correo}</li>`; 
+            lista.appendChild(item);
+        })
     }
     
     getContacts(){

@@ -18,8 +18,7 @@ const cargarContactos =  (db) => {
         </span> </li>
         <li>${contacto.numero}</li>
         <li>${contacto.correo}</li>`; 
-        lista.appendChild(item);
-        
+        lista.appendChild(item);    
     }
 
     document.querySelectorAll(".contacto").forEach(function(contact){

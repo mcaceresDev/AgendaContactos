@@ -9,6 +9,7 @@ const txtCorreo = document.querySelector("#correo");
 const formulario = document.querySelector("#formulario")
 const modalContainer = document.querySelector("#md0");
 const db = window.localStorage;
+// let contactsSaved = []
 
 //Menu de pestañas
 const despliegaPestana = (e) =>{

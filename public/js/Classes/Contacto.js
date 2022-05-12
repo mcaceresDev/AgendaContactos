@@ -10,16 +10,30 @@ class Contact {
 
     subscribe(observer){
         this.observers.push(observer)
+        console.log("Suscrito");
     }
     
     unsubscribe(observer){
         this.observers.filter(objObserver => objObserver !== observer)
     }
     
-    notify(){
+    notify(data){
         this.observers.forEach((observer) =>{
-            observer.getContacts()
+            observer.refresh(data)
         })
     }
 
 }
+
+// class Observer{
+    
+//     fn
+
+//     constructor(fn){
+//         this.fn = fn;
+//     }
+
+//     refresh(contactos){
+//         this.fn(contactos)
+//     }
+// }
