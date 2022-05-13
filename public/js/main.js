@@ -66,54 +66,47 @@ function eliminarContacto(e){
 /*--------------------------------------*/
 function editarContacto(e){
     e.stopPropagation();
-
-    let btnGroup = this.parentNode;
-    let li = btnGroup.parentNode;
-    let id = parseInt(li.parentNode.dataset.ident);
+    let id = parseInt(e.target.dataset.ident);
+    let contacto = JSON.parse(db.getItem(id))
     
-    let contacto = JSON.parse(db.getItem(id));
-    
-    let Nombres = document.querySelector("#nombreC");
-    let Apellido = document.querySelector("#apellidoC");
-    let Numero = document.querySelector("#numeroC");
-    let Email = document.querySelector("#emailC");
+    nombre.value   = contacto.nombre;
+    apellido.value = contacto.apellido;
+    numero.value   = contacto.numero;
+    correo.value   = contacto.correo;
 
-    Nombres.value = contacto.nombre;
-    Apellido.value = contacto.apellido;
-    Numero.value = contacto.numero;
-    Email.value = contacto.correo;
-
-    document.querySelector("#md4").classList.add("visible");    
-    edita(db, id)  
+    document.querySelector("#btnAgrega").classList.add("oculto");
+    document.querySelector("#btnEdita").classList.remove("oculto");
+    // edita(db, id)  
+    edita(contacto.id)  
 
 }
 
 
-const edita = (db, Id) => {
-    let Nombres = document.querySelector("#nombreC");
-    let Apellido = document.querySelector("#apellidoC");
-    let Numero = document.querySelector("#numeroC");
-    let Email = document.querySelector("#emailC");
+const edita = (id) => {
+    let newContact = {
+        id: id,
+        nombre: txtNombre.value,
+        apellido: txtApellido.value,
+        numero: txtNumero.value,
+        correo: txtCorreo.value
+    }
+    document.querySelector("#btnEdita").addEventListener("click", function(e){
+        e.preventDefault();
 
-    
-    document.querySelector("#reemplaza").addEventListener("click", function(e){
-            e.preventDefault();
+        const Subject = new Contact()
+        const Observer = new ContactService()
+        
+        Observer.createContact(newContact)
+        Subject.subscribe(Observer)
+        Subject.notify(getContacts())
 
-            let contacto = {
-                id: Id,
-                nombre: Nombres.value,
-                apellido: Apellido.value,
-                numero: Numero.value,
-                correo: Email.value
-            }
-
-            db.setItem(contacto.id, JSON.stringify(contacto));
-            document.querySelector("#md4").classList.remove("visible");
-            location.reload();
-            // cargarContactos(db);
+        document.querySelector("#btnAgrega").classList.remove("oculto");
+        document.querySelector("#btnEdita").classList.add("oculto");
     });
 }
-
+//---- Agregar Contactos (Guardarlos)
+// const btnEdita = document.querySelector("#btnEdita");
+// btnAgrega.addEventListener("click", edita);
 
 /*--------------------------------------*/ 
 //**********  BUSQUEDA DINAMICA DE CONTACTOS ****************/

@@ -83,6 +83,18 @@ li.active{
     background-color: #1a9996; 
 }
 
+#btnEdita{
+    padding: 5px;
+    color: whitesmoke;
+    border: solid rgba(0, 0, 0, 0.397) 1px;
+    border-radius: 5px;
+    background-color: #1a9996; 
+}
+
+#btnAgrega.oculto, #btnEdita.oculto{
+    display: none;
+}
+
 /*------ BLOQUES (PESTAÑAS) --------*/
 .bloque{
     display: none; 

@@ -20,20 +20,8 @@ class Contact {
     notify(data){
         this.observers.forEach((observer) =>{
             observer.refresh(data)
+            console.log("Sejecuto");
         })
     }
 
 }
-
-// class Observer{
-    
-//     fn
-
-//     constructor(fn){
-//         this.fn = fn;
-//     }
-
-//     refresh(contactos){
-//         this.fn(contactos)
-//     }
-// }
