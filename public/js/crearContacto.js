@@ -78,8 +78,9 @@ const createContact = (e) => {
     }
     
     else {
-        const Observer = new ContactService(getContacts())
+        const Observer = new ContactService()
         Observer.createContact(contacto)
+
         Subject.subscribe(Observer)
         Subject.notify(getContacts())
         

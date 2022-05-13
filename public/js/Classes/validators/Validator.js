@@ -28,7 +28,7 @@ class Validator {
     existContact() {
         let claves = Object.keys(db);
         // recorremos las claves (id) de los contactos   
-        for (clave of claves) {
+        for (let clave of claves) {
             let contacto = JSON.parse(db.getItem(clave));
 
             //si el numero o el correo ya existen eliminamos el ultimo Id guardado en el historial

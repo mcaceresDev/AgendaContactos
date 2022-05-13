@@ -1,11 +1,10 @@
 // Observer
 class ContactService {
     db
-    fnCargaContactos
 
-    constructor(fn){
+    constructor(){
         this.db = window.localStorage
-        this.fnCargaContactos = fn
+        
     }
 
     refresh(data){
