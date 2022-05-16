@@ -77,9 +77,11 @@ const editarContacto = (e) => {
     document.querySelector("#btnAgrega").classList.remove("oculto");
     document.querySelector("#btnEdita").classList.add("oculto");
 
-    const title = "Contacto actualizado"
-    const message = "La información del contacto ha sido actualizada"
-    modalContainer.innerHTML = modal.getInstanceModal("success", message, title)
+    let modalSettings = {
+        title: "Contacto actualizado",
+        message: "La información del contacto ha sido actualizada"
+    }
+    modalContainer.innerHTML = modal.getInstanceModal("success", modalSettings)
     showModal()
 }
 

@@ -24,6 +24,11 @@ class ContactService {
             lista.appendChild(item);
         })
 
+        document.querySelectorAll(".contacto").forEach(function(contact){
+            contact.addEventListener("click", function() {
+                this.classList.toggle("completo")
+            })
+        });
         document.querySelectorAll(".btnEdita").forEach(function(elemento){
             elemento.addEventListener("click", getContact);
         });

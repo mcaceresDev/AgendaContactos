@@ -1,8 +1,14 @@
+// {
+//     icon: 'error',
+//     title: 'Oops...',
+//     text: 'Something went wrong!',
+//     footer: '<a href="">Why do I have this issue?</a>'
+// }
 
 //Clase creadora
 class Modal {
 
-    getInstanceModal(Key, message) {
+    getInstanceModal(Key, settingObject) {
         let objType = Object.values(ModalTypes)
         let typeClass
 
@@ -12,22 +18,28 @@ class Modal {
             }
         })
 
-        return typeClass.render(message)
+        return typeClass.render(settingObject)
     }
 }
 
 // Creador concreto A
 class ModalSuccess {
 
-    render(message, title) {
+    objOptions = {
+    icon: 'check_circle',
+    title: 'Contacto Agregado',
+    message: 'Ahora puedes buscarlo en tu lista de contactos',
+    }
+
+    render(objOptions) {
         return `<div class="success animate">
                     <span class="material-icons">
-                        check_circle
+                        ${objOptions == undefined || objOptions.icon == null ? this.objOptions.icon : objOptions.icon}
                     </span>
                     <div class="texto">
                         
-                        <h2>${title}</h2>
-                        <p>${message}</p>
+                        <h2>${objOptions == undefined ? this.objOptions.title : objOptions.title}</h2>
+                        <p>${objOptions == undefined ? this.objOptions.message : objOptions.message}</p>
                     </div>      
                 </div>`
     }
@@ -36,40 +48,52 @@ class ModalSuccess {
 // Creador concreto B
 class ModalWarning {
 
-    render(message) {
-        console.log("renderizando aviso")
+    objOptions = {
+        icon: 'error_outline',
+        title: 'Error',
+        message: 'Ha ocurrido un error, intentalo mas tarde',
+        }
+    
+        render(objOptions) {
+            return `<div class="warning animate">
+                        <span class="material-icons">
+                            ${objOptions == undefined || objOptions.icon == null ? this.objOptions.icon : objOptions.icon}
+                        </span>
+                        <div class="texto">
+                            
+                            <h2>${objOptions == undefined ? this.objOptions.title : objOptions.title}</h2>
+                            <p>${objOptions == undefined ? this.objOptions.message : objOptions.message}</p>
+                        </div>      
+                    </div>`
+        }
 
-        return `<div class="warning animate">
-                <span class="material-icons">
-                    error_outline
-                </span>
-                <div class="texto">
-                    <h2>Datos Incompletos</h2>
-                    <p>${message}</p>
-                </div>
-            </div>`
-    }
 }
 
 // Creador concreto C
 class ModalError {
 
-    render(message) {
-        return `<div class="error animate">
-                    <span class="material-icons">
-                        error
-                    </span>
-                    <div class="texto">
-                        <h2>No puedes guardar mas contactos</h2>
-                        <p>${message}</p>
-                    </div>      
-                </div>`
-    }
-
+    objOptions = {
+        icon: 'error',
+        title: 'Error',
+        message: 'Ha ocurrido un error. Vuelve a intentarlo luego',
+        }
+    
+        render(objOptions) {
+            return `<div class="error animate">
+                        <span class="material-icons">
+                            ${objOptions == undefined || objOptions.icon == null ? this.objOptions.icon : objOptions.icon}
+                        </span>
+                        <div class="texto">
+                            
+                            <h2>${objOptions == undefined ? this.objOptions.title : objOptions.title}</h2>
+                            <p>${objOptions == undefined ? this.objOptions.message : objOptions.message}</p>
+                        </div>      
+                    </div>`
+        }
 }
 
 ModalTypes = {
     success: ModalSuccess,
-    error:   ModalError,
+    error: ModalError,
     warning: ModalWarning
 }

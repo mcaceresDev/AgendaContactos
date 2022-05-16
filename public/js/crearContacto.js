@@ -54,25 +54,35 @@ const createContact = (e) => {
     const modal = new Modal
     
     if (valid.emptyFields()) {
-        const message = "Campos Vacíos. Los campos Nombre, Telefono y Correo son obligatorios"
         
-        modalContainer.innerHTML = modal.getInstanceModal("warning", message)
+        let modalSettings = {
+            title: "Datos incompletos",
+            message: "Campos Vacíos. Los campos Nombre, Telefono y Correo son obligatorios"
+        }
+        modalContainer.innerHTML = modal.getInstanceModal("warning", modalSettings)
         showModal()
         return
     }
     
     else if (valid.existContact()) {
-        const message = "El número o correo ya están asociados a un contacto. Verifica y vuelve a intentar"
-
-        modalContainer.innerHTML = modal.getInstanceModal("error", message)
+        
+        let modalSettings = {
+            title: "El contacto ya existe",
+            message: "El número o correo ya están asociados a un contacto. Verifica y vuelve a intentar"
+        }
+        modalContainer.innerHTML = modal.getInstanceModal("error", modalSettings)
         showModal()
         return
     }
     
     else if (valid.maxLimitContacts()) {
-        const message = "Has llenado la memoria, elimina algunos contactos"
         
-        modalContainer.innerHTML = modal.getInstanceModal("error", message)
+        let modalSettings = {
+            icon: 'cancel',
+            title: "Memoria llena",
+            message: "Has llenado la memoria, elimina algunos contactos"
+        }
+        modalContainer.innerHTML = modal.getInstanceModal("error", modalSettings)
         showModal()
         return
     }
@@ -83,10 +93,8 @@ const createContact = (e) => {
 
         Subject.subscribe(Observer)
         Subject.notify(getContacts())
-        
-        const message = "Ahora puedes buscarlo en tu lista de contactos"
-        
-        modalContainer.innerHTML = modal.getInstanceModal("success", message)
+                
+        modalContainer.innerHTML = modal.getInstanceModal("success")
         showModal()
         document.querySelector("#formulario").reset();
     }
