@@ -19,13 +19,14 @@ class Modal {
 // Creador concreto A
 class ModalSuccess {
 
-    render(message) {
+    render(message, title) {
         return `<div class="success animate">
                     <span class="material-icons">
                         check_circle
                     </span>
                     <div class="texto">
-                        <h2>Contacto Agregado</h2>
+                        
+                        <h2>${title}</h2>
                         <p>${message}</p>
                     </div>      
                 </div>`
@@ -69,6 +70,6 @@ class ModalError {
 
 ModalTypes = {
     success: ModalSuccess,
-    error: ModalError,
+    error:   ModalError,
     warning: ModalWarning
 }

@@ -54,13 +54,8 @@ class ContactService {
 
     createContact(contact){
         this.db.setItem(contact.id, JSON.stringify(contact))
-        console.log("Exito");
-        console.log(contact);
+        document.querySelector("#formulario").reset()
         
-    }
-
-    setContact(id, contact){
-        this.db.setItem(id, JSON.stringify(contact))
     }
 
     deleteContact(id){

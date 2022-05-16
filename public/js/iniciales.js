@@ -30,7 +30,16 @@ const despliegaPestana = (e) =>{
     });
 
     pestana.classList.add("active");
+    Reset()
 }
+
+const Reset = () =>{
+    document.querySelector("#formulario").reset()
+    editContactId = 0
+    document.querySelector("#btnAgrega").classList.remove("oculto");
+    document.querySelector("#btnEdita").classList.add("oculto");
+}
+
 //Listeners
 document.querySelectorAll(".navegacion li a").forEach( (elemento) => {
     elemento.addEventListener("click", despliegaPestana)
