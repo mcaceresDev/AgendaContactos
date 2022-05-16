@@ -92,8 +92,36 @@ class ModalError {
         }
 }
 
+// Creador concreto D
+class ModalConfirm {
+
+    objOptions = {
+        icon: 'cancel',
+        title: '¿Estas seguro?',
+        message: 'No podras recuperar este contacto. Se eliminará por completo',
+        }
+
+    render(objOptions) {
+
+        return `<div class="confirm animate">
+                    <span class="material-icons">
+                        ${objOptions == undefined || objOptions.icon == null ? this.objOptions.icon : objOptions.icon}
+                    </span>
+                    <div class="texto">
+                        <h2>${objOptions == undefined ? this.objOptions.title : objOptions.title}</h2>
+                        <p>${objOptions == undefined ? this.objOptions.message : objOptions.message}</p>
+                    </div>      
+                    <span>
+                        <button class="btnBorrar">Aceptar</button>
+                        <button class="btnCancelar">Cancelar</button>
+                    </span>
+                </div>`
+    }
+}
+
 ModalTypes = {
     success: ModalSuccess,
     error: ModalError,
-    warning: ModalWarning
+    warning: ModalWarning,
+    confirm: ModalConfirm
 }

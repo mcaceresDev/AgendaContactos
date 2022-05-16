@@ -8,24 +8,32 @@ let editContactId = 0
 /*--------------------------------------*/
 function eliminarContacto(e){
     e.stopPropagation();
-    let btnGroup = this.parentNode;
-    let li = btnGroup.parentNode;
-    let contacto = parseInt(li.parentNode.dataset.ident);
-        
-    let modalElim = document.querySelector("#md3");
-    modalElim.classList.add("visible");
+    let contactId = parseInt(e.target.dataset.ident);
+
+    const modal = new Modal()
+    modalContainer.innerHTML = modal.getInstanceModal("confirm")
+    modalContainer.classList.add("visible")
+
     //Agregamos el listener al boton de borrar del modal para que ejecute la funcion de eliminacion
-    let btnBorrar = document.querySelector("#md3 .btnBorrar").addEventListener("click", () => {
-        db.removeItem(contacto);
-        let index = contacto-1;
-        
-        historial.splice(historial.indexOf(index), 1);
-        // cargarContactos(db);
-        modalElim.classList.remove("visible");
-        location.reload();
+    let btnBorrar = document.querySelector(".btnBorrar").addEventListener("click", () => {
+        db.removeItem(contactId);
+        modalContainer.classList.remove("visible");
+
+        const Subject = new Contact()
+        const Observer = new ContactService()
+        Subject.subscribe(Observer)
+        Subject.notify(getContacts())
+
+        let modalSettings = {
+            title: "Operación Exitosa",
+            message: "El contacto ha sido eliminado"
+        }
+        modalContainer.innerHTML = modal.getInstanceModal("success", modalSettings)
+        showModal()
     }); 
     //agregamos el listener para cerrar el modal en caso de no querer borrar el contacto
-    let btnCancelar = document.querySelector("#md3 .btnCancelar").addEventListener("click", () => modalElim.classList.remove("visible"));
+    let btnCancelar = document.querySelector("#md3 .btnCancelar")
+    btnCancelar.addEventListener("click", () => modalContainer.classList.remove("visible"));
 }
 
 /*--------------------------------------*/ 

@@ -51,7 +51,7 @@ const createContact = (e) => {
     }
     
     const valid = new Validator(contacto)
-    const modal = new Modal
+    const modal = new Modal()
     
     if (valid.emptyFields()) {
         
