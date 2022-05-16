@@ -1,3 +1,7 @@
+const Observer = new ContactService()
+Observer.refresh(Observer.getContacts())
+
+let editContactId = 0
 
 // Generar Listado de Contactos Guardados
 const cargarContactos =  (db) => {
@@ -34,7 +38,7 @@ const cargarContactos =  (db) => {
     });
 }
 
-cargarContactos(db);
+// cargarContactos(db);
  
 /*--------------------------------------*/ 
 // ELIMINACION DE CONTACTOS
@@ -64,7 +68,7 @@ function eliminarContacto(e){
 /*--------------------------------------*/ 
 // EDICION DE CONTACTOS
 /*--------------------------------------*/
-function editarContacto(e){
+function getContact(e){
     e.stopPropagation();
     let id = parseInt(e.target.dataset.ident);
     let contacto = JSON.parse(db.getItem(id))
@@ -76,33 +80,33 @@ function editarContacto(e){
 
     document.querySelector("#btnAgrega").classList.add("oculto");
     document.querySelector("#btnEdita").classList.remove("oculto");
-    // edita(db, id)  
-    edita(contacto.id)  
+    document.querySelector("#btnEdita").addEventListener("click", editarContacto)
 
+    editContactId = id
+    console.log(editContactId);
 }
 
 
-const edita = (id) => {
+const editarContacto = (e) => {
+    e.preventDefault()
+
     let newContact = {
-        id: id,
+        id: editContactId,
         nombre: txtNombre.value,
         apellido: txtApellido.value,
         numero: txtNumero.value,
         correo: txtCorreo.value
     }
-    document.querySelector("#btnEdita").addEventListener("click", function(e){
-        e.preventDefault();
 
-        const Subject = new Contact()
-        const Observer = new ContactService()
-        
-        Observer.createContact(newContact)
-        Subject.subscribe(Observer)
-        Subject.notify(getContacts())
+    const Subject = new Contact()
+    const Observer = new ContactService()
+    
+    Observer.createContact(newContact)
+    Subject.subscribe(Observer)
+    Subject.notify(getContacts())
 
-        document.querySelector("#btnAgrega").classList.remove("oculto");
-        document.querySelector("#btnEdita").classList.add("oculto");
-    });
+    document.querySelector("#btnAgrega").classList.remove("oculto");
+    document.querySelector("#btnEdita").classList.add("oculto");
 }
 //---- Agregar Contactos (Guardarlos)
 // const btnEdita = document.querySelector("#btnEdita");

@@ -25,7 +25,7 @@ class ContactService {
         })
 
         document.querySelectorAll(".btnEdita").forEach(function(elemento){
-            elemento.addEventListener("click", editarContacto);
+            elemento.addEventListener("click", getContact);
         });
         document.querySelectorAll(".btnElimina").forEach(function(elemento){
             elemento.addEventListener("click", eliminarContacto);
@@ -39,9 +39,16 @@ class ContactService {
         for (const id of contactIdList) {
             let contact = JSON.parse(this.db.getItem(id))
             contacts.push(contact)
+
         }
+        contacts = contacts.sort(this.SortContacts)
 
         return contacts
+    }
+
+    SortContacts(x, y){
+        if (x.nombre < y.nombre) {return -1;}
+        return 0;
     }
 
     createContact(contact){
