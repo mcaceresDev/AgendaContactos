@@ -9,9 +9,11 @@ const txtCorreo = document.querySelector("#correo");
 const formulario = document.querySelector("#formulario")
 const modalContainer = document.querySelector("#md0");
 const db = window.localStorage;
-// let contactsSaved = []
 
-//Menu de pestañas
+
+/*-------------------------------------*/
+// FUNCIONES GLOBALES
+/*-------------------------------------*/
 const despliegaPestana = (e) =>{
     e.preventDefault();
     
@@ -22,7 +24,6 @@ const despliegaPestana = (e) =>{
     });
     document.querySelector(objetivo).classList.add("activo");
     
-    //-------------------------------------------------------
 
     let pestana = e.target.parentNode;
     document.querySelectorAll(".navegacion li").forEach( (elemento) => {
@@ -32,6 +33,7 @@ const despliegaPestana = (e) =>{
     pestana.classList.add("active");
     Reset()
 }
+
 
 const Reset = () =>{
     document.querySelector("#formulario").reset()

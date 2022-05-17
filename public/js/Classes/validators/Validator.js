@@ -1,12 +1,12 @@
 class Validator {
     db
-    idList
+    idContacts
     _contacto
 
     constructor(contacto) {
         this._contacto = contacto
         this.db = window.localStorage
-        this.idList = Object.keys(db)
+        this.idContacts = Object.keys(db)
     }
 
     emptyFields() {
@@ -18,7 +18,7 @@ class Validator {
 
     maxLimitContacts() {
 
-        if (this.idList.length >= 5) {
+        if (this.idContacts.length >= 5) {
             return true
         }
     }
@@ -44,11 +44,11 @@ class Validator {
         
         let lastId
 
-        if (this.idList.length == 0) {
+        if (this.idContacts.length == 0) {
             lastId = 1
         }
         else {
-            lastId = Math.max(...idList) + 1
+            lastId = Math.max(...idContacts) + 1
         }
 
         return lastId

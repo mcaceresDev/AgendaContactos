@@ -1,5 +1,5 @@
 
-//Sujeto
+//Subject
 class Contact {
     
     observers

@@ -1,9 +1,3 @@
-// {
-//     icon: 'error',
-//     title: 'Oops...',
-//     text: 'Something went wrong!',
-//     footer: '<a href="">Why do I have this issue?</a>'
-// }
 
 //Clase creadora
 class Modal {
@@ -66,7 +60,6 @@ class ModalWarning {
                         </div>      
                     </div>`
         }
-
 }
 
 // Creador concreto C
@@ -121,7 +114,7 @@ class ModalConfirm {
 
 ModalTypes = {
     success: ModalSuccess,
-    error: ModalError,
+    error:   ModalError,
     warning: ModalWarning,
     confirm: ModalConfirm
 }
