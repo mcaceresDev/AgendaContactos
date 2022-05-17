@@ -80,7 +80,7 @@ const editarContacto = (e) => {
     
     Observer.createContact(newContact)
     Subject.subscribe(Observer)
-    Subject.notify(getContacts())
+    Subject.notify(Observer.getContacts())
 
     document.querySelector("#btnAgrega").classList.remove("oculto");
     document.querySelector("#btnEdita").classList.add("oculto");

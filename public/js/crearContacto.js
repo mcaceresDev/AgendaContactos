@@ -92,7 +92,7 @@ const createContact = (e) => {
         Observer.createContact(contacto)
 
         Subject.subscribe(Observer)
-        Subject.notify(getContacts())
+        Subject.notify(Observer.getContacts())
                 
         modalContainer.innerHTML = modal.getInstanceModal("success")
         showModal()
