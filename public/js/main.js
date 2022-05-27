@@ -139,7 +139,7 @@ function eliminarContacto(e){
         showModal()
     }); 
     //agregamos el listener para cerrar el modal en caso de no querer borrar el contacto
-    let btnCancelar = document.querySelector("#md3 .btnCancelar")
+    let btnCancelar = document.querySelector("#md0 .btnCancelar")
     btnCancelar.addEventListener("click", () => modalContainer.classList.remove("visible"));
 }
 
