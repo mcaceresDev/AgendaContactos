@@ -23,18 +23,12 @@ class Validator {
         for (let id of contactsIds) {
             let contacto = JSON.parse(db.getItem(id));
 
-            //si el numero o el correo ya existen eliminamos el ultimo Id guardado en el historial
+            //valida si el numero o el correo ya existen 
             if (this._contacto.numero == contacto.numero || this._contacto.correo == contacto.correo ) {        
                 return true;
             }
         }
         return false;
-    }
-
-    generateId() {
-
-        let lastId = this.idContacts.length == 0 ? 1 : Math.max(...this.idContacts) + 1
-        return lastId
     }
 
 }

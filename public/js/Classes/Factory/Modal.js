@@ -21,8 +21,8 @@ class ModalSuccess {
 
     objOptions = {
     icon: 'check_circle',
-    title: 'Contacto Agregado',
-    message: 'Ahora puedes buscarlo en tu lista de contactos',
+    title: 'Operación exitosa',
+    message: 'Tu solicitud fue realizada',
     }
 
     render(objOptions) {
@@ -44,8 +44,8 @@ class ModalWarning {
 
     objOptions = {
         icon: 'error_outline',
-        title: 'Error',
-        message: 'Ha ocurrido un error, intentalo mas tarde',
+        title: 'Aviso',
+        message: 'Debes ejecutar con cuidado esta acción',
         }
     
         render(objOptions) {
@@ -91,7 +91,7 @@ class ModalConfirm {
     objOptions = {
         icon: 'cancel',
         title: '¿Estas seguro?',
-        message: 'No podras recuperar este contacto. Se eliminará por completo',
+        message: 'Verifica todo antes de realizar esta acción',
         }
 
     render(objOptions) {

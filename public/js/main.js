@@ -1,20 +1,13 @@
 const Observer = new ContactService()
 Observer.refresh(Observer.getContacts())
 
-let editContactId = 0
+// let editContactId = 0
 
 
 //Consulta los Elementos guardados segun su id y devuelve un id nuevo.
-const generateId = () => {
-    let idList = Object.keys(db)
-    let lastId
-
-    if (idList.length == 0) {
-        lastId = 1
-    }
-    else {
-        lastId = Math.max(...idList) + 1
-    }
+const generateId = ()=> {
+    let idContacts = Object.keys(db)
+    let lastId = idContacts.length == 0 ? 1 : Math.max(...idContacts) + 1
     return lastId
 }
 
@@ -58,7 +51,7 @@ const createContact = (e) => {
     const valid = new Validator(contacto)
     const modal = new Modal()
     
-    if (valid.emptyFields()) {
+    if (valid.hasEmptyFields()) {
         
         let modalSettings = {
             title: "Datos incompletos",
@@ -69,7 +62,7 @@ const createContact = (e) => {
         return
     }
     
-    else if (valid.existContact()) {
+    else if (valid.isContactSaved()) {
         
         let modalSettings = {
             title: "El contacto ya existe",
@@ -80,7 +73,7 @@ const createContact = (e) => {
         return
     }
     
-    else if (valid.maxLimitContacts()) {
+    else if (!valid.canSaveContact()) {
         
         let modalSettings = {
             icon: 'cancel',
@@ -93,13 +86,18 @@ const createContact = (e) => {
     }
     
     else {
+
         const Observer = new ContactService()
         Observer.createContact(contacto)
+        let modalSettings = {
+            title: "Contacto guardado",
+            message: "Tu contacto ha sido guardado, ahora puedes buscarlo en tu lista de contactos"
+        }
 
         Subject.subscribe(Observer)
         Subject.notify(Observer.getContacts())
                 
-        modalContainer.innerHTML = modal.getInstanceModal("success")
+        modalContainer.innerHTML = modal.getInstanceModal("success", modalSettings)
         showModal()
         document.querySelector("#formulario").reset();
     }
@@ -116,13 +114,16 @@ btnAgrega.addEventListener("click", createContact);
 function eliminarContacto(e){
     e.stopPropagation();
     let contactId = parseInt(e.target.dataset.ident);
-
+    let modalSettings = {
+        title: "¿Estas seguro?",
+        message: "No podras recuperar este contacto después."
+    }
     const modal = new Modal()
     modalContainer.innerHTML = modal.getInstanceModal("confirm")
     modalContainer.classList.add("visible")
 
     //Agregamos el listener al boton de borrar del modal para que ejecute la funcion de eliminacion
-    let btnBorrar = document.querySelector(".btnBorrar").addEventListener("click", () => {
+    document.querySelector(".btnBorrar").addEventListener("click", () => {
         db.removeItem(contactId);
         modalContainer.classList.remove("visible");
 
@@ -131,13 +132,14 @@ function eliminarContacto(e){
         Subject.subscribe(Observer)
         Subject.notify(getContacts())
 
-        let modalSettings = {
+        modalSettings = {
             title: "Operación Exitosa",
             message: "El contacto ha sido eliminado"
         }
         modalContainer.innerHTML = modal.getInstanceModal("success", modalSettings)
         showModal()
     }); 
+    
     //agregamos el listener para cerrar el modal en caso de no querer borrar el contacto
     let btnCancelar = document.querySelector("#md0 .btnCancelar")
     btnCancelar.addEventListener("click", () => modalContainer.classList.remove("visible"));
@@ -151,10 +153,10 @@ function getContact(e){
     let id = parseInt(e.target.dataset.ident);
     let contacto = JSON.parse(db.getItem(id))
     
-    nombre.value   = contacto.nombre;
-    apellido.value = contacto.apellido;
-    numero.value   = contacto.numero;
-    correo.value   = contacto.correo;
+    txtName.value   = contacto.nombre;
+    txtLastName.value = contacto.apellido;
+    txtNumber.value   = contacto.numero;
+    txtEmail.value   = contacto.correo;
 
     document.querySelector("#btnAgrega").classList.add("oculto");
     document.querySelector("#btnEdita").classList.remove("oculto");
@@ -176,10 +178,10 @@ const editarContacto = (e) => {
     const modal = new Modal
     let newContact = {
         id: editContactId,
-        nombre: txtNombre.value,
-        apellido: txtApellido.value,
-        numero: txtNumero.value,
-        correo: txtCorreo.value
+        nombre: txtName.value,
+        apellido: txtLastName.value,
+        numero: txtNumber.value,
+        correo: txtEmail.value
     }
 
     const Subject = new Contact()

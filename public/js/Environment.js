@@ -1,3 +1,4 @@
+editContactId     = 0
 // SINGLETON
 class Environment {
 
@@ -10,11 +11,11 @@ class Environment {
     txtLastName       = document.querySelector("#apellido");
     txtNumber         = document.querySelector("#numero");
     txtEmail          = document.querySelector("#correo");
-    editContactId     = 0
 
     /*-------------------------------------*/
     // FUNCIONES GLOBALES
     /*-------------------------------------*/
+    //manipula las pestañas del menu de la aplicacion
     paginate = (e) => {
         e.preventDefault();
     
@@ -34,8 +35,8 @@ class Environment {
     
     
     resetElements = () => {
-        this.editContactId = 0
-        document.querySelector("#formulario").reset()
+        editContactId = 0
+        this.formElement.reset()
         document.querySelector("#btnAgrega").classList.remove("oculto");
         document.querySelector("#btnEdita").classList.add("oculto");
     }
@@ -52,8 +53,7 @@ const { contactsContainer,
     txtName,
     txtLastName,
     txtNumber,
-    txtEmail,
-    editContactId } = env
+    txtEmail } = env
  
     
 //LISTENERS

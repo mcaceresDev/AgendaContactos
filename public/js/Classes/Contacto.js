@@ -10,7 +10,6 @@ class Contact {
 
     subscribe(observer){
         this.observers.push(observer)
-        console.log("Suscrito");
     }
     
     unsubscribe(observer){
@@ -20,7 +19,6 @@ class Contact {
     notify(data){
         this.observers.forEach((observer) =>{
             observer.refresh(data)
-            console.log("Sejecuto");
         })
     }
 
