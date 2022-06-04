@@ -1,9 +1,6 @@
 const Observer = new ContactService()
 Observer.refresh(Observer.getContacts())
 
-// let editContactId = 0
-
-
 //Consulta los Elementos guardados segun su id y devuelve un id nuevo.
 const generateId = ()=> {
     let idContacts = Object.keys(db)
@@ -19,27 +16,11 @@ const showModal = () => {
     }, 2000)
 }
 
-
-const getContacts = ()=>{
-    let contactIdList = Object.keys(db)
-    let contacts      = []
-
-    for (const id of contactIdList) {
-        let contact = JSON.parse(db.getItem(id))
-        contacts.push(contact)
-    }
-
-    return contacts
-}
-
-
 //Lleva la logica correspondiente para guardar contactos. Contruye diferentes objetos
 // en base los eventos condicionales
 const createContact = (e) => {
     e.preventDefault();
 
-    const Subject = new Contact()
-    
     let contacto = {
         id: generateId(),
         nombre: nombre.value,
@@ -48,6 +29,7 @@ const createContact = (e) => {
         correo: correo.value
     }
     
+    const Subject = new Contact()
     const valid = new Validator(contacto)
     const modal = new Modal()
     
@@ -85,25 +67,24 @@ const createContact = (e) => {
         return
     }
     
-    else {
+    const Observer = new ContactService()
+    Observer.createContact(contacto)
 
-        const Observer = new ContactService()
-        Observer.createContact(contacto)
-        let modalSettings = {
-            title: "Contacto guardado",
-            message: "Tu contacto ha sido guardado, ahora puedes buscarlo en tu lista de contactos"
-        }
-
-        Subject.subscribe(Observer)
-        Subject.notify(Observer.getContacts())
-                
-        modalContainer.innerHTML = modal.getInstanceModal("success", modalSettings)
-        showModal()
-        document.querySelector("#formulario").reset();
+    let modalSettings = {
+        title: "Contacto guardado",
+        message: "Tu contacto ha sido guardado, ahora puedes buscarlo en tu lista de contactos"
     }
+
+    Subject.subscribe(Observer)
+    Subject.notify(Observer.getContacts())
+            
+    modalContainer.innerHTML = modal.getInstanceModal("success", modalSettings)
+    showModal()
+    document.querySelector("#formulario").reset();
+    
 }
 
-//---- Agregar Contactos (Guardarlos)
+//---- Boton para gregar Contactos (Guardarlos)
 const btnAgrega = document.querySelector("#btnAgrega");
 btnAgrega.addEventListener("click", createContact);
 
@@ -114,6 +95,7 @@ btnAgrega.addEventListener("click", createContact);
 function eliminarContacto(e){
     e.stopPropagation();
     let contactId = parseInt(e.target.dataset.ident);
+    
     let modalSettings = {
         title: "¿Estas seguro?",
         message: "No podras recuperar este contacto después."
@@ -130,7 +112,7 @@ function eliminarContacto(e){
         const Subject = new Contact()
         const Observer = new ContactService()
         Subject.subscribe(Observer)
-        Subject.notify(getContacts())
+        Subject.notify(Observer.getContacts())
 
         modalSettings = {
             title: "Operación Exitosa",

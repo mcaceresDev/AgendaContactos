@@ -1,4 +1,4 @@
-
+//OBSERVER
 //Subject
 class Contact {
     

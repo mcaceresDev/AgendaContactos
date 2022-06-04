@@ -1,15 +1,15 @@
 @font-face {
 	font-family: Montserrat;
-	src: url("./Montserrat-Regular.ttf");
+	src: url("../assets/fonts/Montserrat-Bold.ttf");
 }
 
 @font-face {
 	font-family: Roboto;
-	src: url("./Roboto-Regular.ttf");
+	src: url("../assets/fonts/Roboto-Regular.ttf");
 }
 @font-face {
 	font-family: RobotoB;
-	src: url("./Roboto-Bold.ttf");
+	src: url("../assets/fonts/Roboto-Bold.ttf");
 }
 
 

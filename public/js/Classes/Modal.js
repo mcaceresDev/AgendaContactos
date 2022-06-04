@@ -1,18 +1,18 @@
-
+//FACTORY
 //Clase creadora
 class Modal {
 
-    getInstanceModal(Key, settingObject) {
-        let objType = Object.values(ModalTypes)
-        let typeClass
+    getInstanceModal(modalKey, settingModal) {
+        let modalTypes = Object.values(modalStore)
+        let modal
 
-        objType.forEach((clase) => {
-            if (clase == ModalTypes[Key]) {
-                typeClass = new clase()
+        modalTypes.forEach((type) => {
+            if (type == modalStore[modalKey]) {
+                modal = new type()
             }
         })
 
-        return typeClass.render(settingObject)
+        return modal.render(settingModal)
     }
 }
 
@@ -112,7 +112,7 @@ class ModalConfirm {
     }
 }
 
-ModalTypes = {
+const modalStore = {
     success: ModalSuccess,
     error:   ModalError,
     warning: ModalWarning,
