@@ -1,7 +1,8 @@
 editContactId     = 0
+
 // SINGLETON
 class Environment {
-
+    static instance
     // Elementos HTML
     contactsContainer = document.querySelector("#lista");
     db                = window.localStorage;
@@ -15,7 +16,16 @@ class Environment {
     /*-------------------------------------*/
     // FUNCIONES GLOBALES
     /*-------------------------------------*/
-    //manipula las pestañas del menu de la aplicacion
+    constructor(){
+
+        if (Environment.instance) {
+            return Environment.instance;
+        }
+        
+        Environment.instance = Environment;
+    }
+    
+    //Manipula las pestañas del menu de la aplicacion
     paginate = (e) => {
         e.preventDefault();
     
@@ -45,7 +55,7 @@ class Environment {
 
 
 // CREANDO OBJETO ENIRONMENT PARA ACCEDER A VARIABLES Y METODOS BASE GLOBALES
-const env = new Environment()
+const env = new Environment();
 const { contactsContainer,
     db,
     formElement,

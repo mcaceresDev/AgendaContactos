@@ -11,16 +11,16 @@ class Validator {
         if (this._contacto.nombre == "" || this._contacto.telefono == "" || this._contacto.correo == "") {
             return true;
         }
+        return false
     }
 
     canSaveContact() {
-        if (this.idContacts.length >= 5) return false
+        return (this.idContacts.length >= 5) ? false : true
     }
 
     isContactSaved() {
-        let contactsIds = Object.keys(db);
         // recorremos las claves (id) de los contactos   
-        for (let id of contactsIds) {
+        for (let id of this.idContacts) {
             let contacto = JSON.parse(db.getItem(id));
 
             //valida si el numero o el correo ya existen 
